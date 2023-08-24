@@ -1,2 +1,17 @@
 export const GET = "get";
 export const SELECTED_FIELDS = "id,thumbnail,title,price,discountPercentage";
+export const FINAL_NOTE= "Thank you for shopping with us us!";
+export const ORDER_SUCCESS= "Order placed successfully!";
+export const ORDER_FAILED="Error placing order, try again!";
+export const SELECT_PRODUCT="Select Products";
+export const SHIPPING_DETAILS="Shipping Details";
+export const PLACE_ORDER="Confirm and Place Order";
+export const SHIPPING_DETAILS_ERROR="Enter the mandatory details to proceed!";
+export const CART_COLUMNS=["Product", "Original Price", "Discount", "Final Price"]
+export const CUSTOMER_NAME="name"
+export const CUSTOMER_DOORNO="address.doorNo"
+export const CUSTOMER_STREET="address.street"
+export const CUSTOMER_STATE="address.state"
+export const CUSTOMER_DISTRICT="address.district"
+export const CUSTOMER_PINCODE="address.pinCode"
+export const CUSTOMER_CONTACTNO="contactNo"

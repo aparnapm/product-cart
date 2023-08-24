@@ -3,6 +3,7 @@ import { IProduct } from "../../interfaces/IProduct";
 import { ICustomer } from "../../interfaces/ICustomer";
 import DataTable from "../common/DataTable";
 import { intToPriceStr } from "../../utils/Utils";
+import { CART_COLUMNS } from "../../utils/Constants";
 
 interface IProps {
   products: Map<string, IProduct>;
@@ -17,11 +18,11 @@ export default function Cart(props: IProps) {
       <div>
         <h5>{props.customer.name}</h5>
         <h5>
-          {props.customer.address.doorNo + "," + props.customer.address.street}
+          {props.customer.address.doorNo + " " + props.customer.address.street}
         </h5>
       </div>
       <DataTable
-        columns={["Product", "Original Price", "Discount", "Final Price"]}
+        columns={CART_COLUMNS}
         data={props.products}
       />
       <h3>Price: {intToPriceStr(props.totalPrice)}</h3>

@@ -1,5 +1,6 @@
 import React, { Reducer, useReducer } from "react";
 import { ICustomer } from "../interfaces/ICustomer";
+import { CUSTOMER_CONTACTNO, CUSTOMER_DISTRICT, CUSTOMER_DOORNO, CUSTOMER_NAME, CUSTOMER_PINCODE, CUSTOMER_STATE, CUSTOMER_STREET } from "../utils/Constants";
 
 interface ShippingInfoProviderProps {
   children: React.ReactNode;
@@ -25,10 +26,8 @@ const defaultCustomer = {
 const ShippingInfoContext = React.createContext<IShippingInfoContext>({
   customer: defaultCustomer,
   dispatchCustomer: (action: IAction) => {
-    console.log("set customer");
   },
   isValidCustomer: () => {
-    console.log("validate customer");
     return false;
   },
 });
@@ -42,22 +41,22 @@ const reducer: Reducer<ICustomer, IAction> = (
 ): ICustomer => {
   console.log(action);
   switch (action.field) {
-    case "name":
+    case CUSTOMER_NAME:
       return { ...state, name: action.value };
-    case "contactNo":
+    case CUSTOMER_CONTACTNO:
       return { ...state, contactNo: action.value };
-    case "address.doorNo":
+    case CUSTOMER_DOORNO:
       return { ...state, address: { ...state.address, doorNo: action.value } };
-    case "address.street":
+    case CUSTOMER_STREET:
       return { ...state, address: { ...state.address, street: action.value } };
-    case "address.district":
+    case CUSTOMER_DISTRICT:
       return {
         ...state,
         address: { ...state.address, district: action.value },
       };
-    case "address.state":
+    case CUSTOMER_STATE:
       return { ...state, address: { ...state.address, state: action.value } };
-    case "address.pinCode":
+    case CUSTOMER_PINCODE:
       return { ...state, address: { ...state.address, pinCode: action.value } };
   }
   return state;

@@ -49,22 +49,14 @@ export default function DynamicStepper(props: IProps): JSX.Element {
         </Stepper>
         {activeStep === props.steps.length ? (
           <div>
-            <div
+            <div className="flexCenter"
               style={{
                 height: "75vh",
-                display: "flex",
-                justifyContent: "center",
               }}
             >
               <h1> {props.completedResponse}</h1>
             </div>
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
+            <div className="flexSpaceBetween">
               <div />
               <CustomButton onClick={handleReset} text={"Order Again"} />
             </div>
@@ -74,13 +66,7 @@ export default function DynamicStepper(props: IProps): JSX.Element {
             <div style={{ height: "75vh" }}>
               {props.steps[activeStep].children}
             </div>
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
+            <div className="flexSpaceBetween">
               <CustomButton
                 disabled={activeStep === 0}
                 onClick={handleBack}

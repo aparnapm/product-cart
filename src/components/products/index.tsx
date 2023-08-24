@@ -70,13 +70,11 @@ export default function Products(props: IProps): JSX.Element {
           </Grid>
           <br />
           <br />
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div className="flexCenter">
             {skip > 0 ? (
               <ArrowBackIos onClick={() => setSkip(skip - limit)} />
             ) : null}
-            <h4
-              style={{ margin: 0, paddingLeft: "10px", paddingRight: "10px" }}
-            >
+            <h4 className="paddedBox">
               Page: {skip / limit + 1} / {Math.ceil(total / limit)}{" "}
             </h4>
             {skip < total - limit ? (

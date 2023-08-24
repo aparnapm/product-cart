@@ -29,11 +29,11 @@ export default function CustomCard(props: IProps): JSX.Element {
           <CardMedia
             component="img"
             image={props.image}
-            height={"120vh"}
-            width={"120vw"}
+            height={"100px"}
+            width={"100px"}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography gutterBottom variant="h6" component="div">
               {props.title}
             </Typography>
             <Typography variant="h6" color="text.secondary">

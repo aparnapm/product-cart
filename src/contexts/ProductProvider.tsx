@@ -14,10 +14,8 @@ interface IProductContext {
 const ProductContext = React.createContext<IProductContext>({
   products: new Map(),
   addProduct: () => {
-    console.log("add product");
   },
   removeProduct: () => {
-    console.log("remove product");
   },
   totalPrice: 0,
   totalDiscount: 0,
@@ -29,7 +27,6 @@ const ProductProvider = (props: ProductProviderProps): JSX.Element => {
   const [totalDiscount, setTotalDiscount] = React.useState<number>(0);
 
   const addProduct = (obj: IProduct) => {
-    console.log("added product", obj);
     if (!products.has(obj.id)) {
       setTotalPrice(totalPrice + obj.price);
       setTotalDiscount(totalDiscount + obj.discountPercentage);
@@ -37,7 +34,6 @@ const ProductProvider = (props: ProductProviderProps): JSX.Element => {
     }
   };
   const removeProduct = (obj: IProduct) => {
-    console.log("removed product", obj);
     if (products.has(obj.id)) {
       setTotalPrice(totalPrice - obj.price);
       setTotalDiscount(totalDiscount - obj.discountPercentage);

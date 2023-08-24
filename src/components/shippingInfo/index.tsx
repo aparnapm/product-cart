@@ -2,18 +2,18 @@ import { Container, Grid } from "@mui/material";
 import { ICustomer } from "../../interfaces/ICustomer";
 import { IAction } from "../../contexts/ShippingInfoProvider";
 import { InputField } from "../common";
+import { CUSTOMER_CONTACTNO, CUSTOMER_DISTRICT, CUSTOMER_DOORNO, CUSTOMER_NAME, CUSTOMER_PINCODE, CUSTOMER_STATE, CUSTOMER_STREET } from "../../utils/Constants";
 
 interface IProps {
   customer: ICustomer;
   dispatchCustomer: (action: IAction) => void;
 }
 export default function ShippingInfo(props: IProps) {
-  console.log("customer:", props.customer);
   return (
     <Container style={{ padding: "50px" }}>
       <InputField
         label={"Recipients Name"}
-        fieldName={"name"}
+        fieldName={CUSTOMER_NAME}
         onClick={props.dispatchCustomer}
         required={true}
         value={props.customer.name}
@@ -22,14 +22,14 @@ export default function ShippingInfo(props: IProps) {
 
       <InputField
         label={"Door Number/Aparment"}
-        fieldName={"address.doorNo"}
+        fieldName={CUSTOMER_DOORNO}
         onClick={props.dispatchCustomer}
         value={props.customer.address.doorNo}
         width={"50vw"}
       />
       <InputField
         label={"Street/Locality"}
-        fieldName={"address.street"}
+        fieldName={CUSTOMER_STREET}
         onClick={props.dispatchCustomer}
         value={props.customer.address.street}
         width={"50vw"}
@@ -38,7 +38,7 @@ export default function ShippingInfo(props: IProps) {
         <Grid item lg={6}>
           <InputField
             label={"District"}
-            fieldName={"address.district"}
+            fieldName={CUSTOMER_DISTRICT}
             onClick={props.dispatchCustomer}
             value={props.customer.address.district}
             width={"30vw"}
@@ -47,7 +47,7 @@ export default function ShippingInfo(props: IProps) {
         <Grid item lg={6}>
           <InputField
             label={"State"}
-            fieldName={"address.state"}
+            fieldName={CUSTOMER_STATE}
             onClick={props.dispatchCustomer}
             value={props.customer.address.state}
             width={"30vw"}
@@ -56,14 +56,14 @@ export default function ShippingInfo(props: IProps) {
       </Grid>
       <InputField
         label={"Pin Code"}
-        fieldName={"address.pinCode"}
+        fieldName={CUSTOMER_PINCODE}
         onClick={props.dispatchCustomer}
         value={props.customer.address.pinCode}
         required={true}
         width={"50vw"}
       />
       <InputField
-        label={"Contact Number"}
+        label={CUSTOMER_CONTACTNO}
         required={true}
         fieldName={"contactNo"}
         onClick={props.dispatchCustomer}

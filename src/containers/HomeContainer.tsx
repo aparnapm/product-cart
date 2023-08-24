@@ -7,6 +7,7 @@ import { useShippingInfoContext } from "../contexts/ShippingInfoProvider";
 import { POST_ORDER } from "../utils/ApiUrls";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { FINAL_NOTE, ORDER_FAILED, ORDER_SUCCESS, PLACE_ORDER, SELECT_PRODUCT, SHIPPING_DETAILS, SHIPPING_DETAILS_ERROR } from "../utils/Constants";
 
 export default function HomeContainer() {
 
@@ -18,7 +19,7 @@ export default function HomeContainer() {
 
   const steps = [
     {
-      title: "Product Catalogue",
+      title: SELECT_PRODUCT,
       children: (
         <Products
           addProduct={addProduct}
@@ -28,15 +29,15 @@ export default function HomeContainer() {
       ),
     },
     {
-      title: "Shipping Details",
+      title: SHIPPING_DETAILS,
       children: (
         <ShippingInfo customer={customer} dispatchCustomer={dispatchCustomer} />
       ),
       nextDisabled: !isValidCustomer(),
-      error: "Enter the mandatory details to proceed!",
+      error: SHIPPING_DETAILS_ERROR,
     },
     {
-      title: "Confirm and Place Order",
+      title: PLACE_ORDER,
       children: (
         <Cart
           products={products}
@@ -50,8 +51,8 @@ export default function HomeContainer() {
 
   function submitOrder(){
     axios.get(POST_ORDER)
-    .then((res:any)=>toast.info("Order placed successfully!"))
-    .catch((err:Error)=> toast.error("Error placing order, try again!"))
+    .then((res:any)=>toast.info(ORDER_SUCCESS))
+    .catch((err:Error)=> toast.error(ORDER_FAILED))
   }
   function isItemSelected(id: string): boolean {
     console.log(products);
@@ -61,16 +62,10 @@ export default function HomeContainer() {
     return false;
   }
   return (
-    <div
-      style={{
-        paddingLeft: "20px",
-        paddingRight: "20px",
-        paddingBottom: "20px",
-      }}
-    >
+    <div className="paddedBox">
       <DynamicStepper
         steps={steps}
-        completedResponse="Thank you for shopping with us us!"
+        completedResponse={FINAL_NOTE}
         onComplete={submitOrder}
       />
     </div>
