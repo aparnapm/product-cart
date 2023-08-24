@@ -24,7 +24,7 @@ export default function CustomCard(props: IProps): JSX.Element {
               {props.title}
             </Typography>
             <Typography variant="h6" color="text.secondary">
-              ${props.description}
+              {props.description}
             </Typography>
           </CardContent>
         </CardActionArea>
