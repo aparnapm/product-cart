@@ -1,7 +1,5 @@
-import {  CircularProgress } from '@mui/material';
+import { CircularProgress } from "@mui/material";
 
-export default function Loading () {
-  return (
-    <CircularProgress disableShrink size={100} />
-  );
+export default function Loading() {
+  return <CircularProgress disableShrink size={100} />;
 }

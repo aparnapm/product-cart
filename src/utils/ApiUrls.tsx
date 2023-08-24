@@ -1,1 +1,1 @@
-export const GET_PRODUCTS = "https://dummyjson.com/products"
+export const GET_PRODUCTS = "https://dummyjson.com/products";
