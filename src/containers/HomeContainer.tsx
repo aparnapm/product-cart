@@ -1,5 +1,5 @@
 
-import Cart from '../components/cart';
+import Cart from '../components/productCart';
 import { DynamicStepper } from '../components/common';
 import Products from '../components/products';
 import ShippingInfo from '../components/shippingInfo';
