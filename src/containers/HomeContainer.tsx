@@ -1,18 +1,28 @@
 
 import { DynamicStepper } from '../components/common';
 import Products from '../components/products';
+import ShippingInfo from '../components/shippingInfo';
 import { useProductContext } from '../contexts/ProductProvider';
+import { useShippingInfoContext } from '../contexts/ShippingInfoProvider';
 
 export default function HomeContainer () {
-  const {addProduct, removeProduct} = useProductContext();
+  const {products,addProduct, removeProduct} = useProductContext();
+  const {customer, dispatchCustomer}= useShippingInfoContext();
+  function isItemSelected (id: string): boolean {
+    console.log(products)
+    if(products.has(id)){
+      return true;
+    }
+    return false;
+  }
   const steps=[
     {
       title:"Product Catalogue",
-      children: <Products addProduct={addProduct} removeProduct={removeProduct}/>
+      children: <Products addProduct={addProduct} removeProduct={removeProduct} isItemSelected={isItemSelected} />
     },
     {
       title:"Shipping Details",
-      children: <div>Please enter shipping info</div>
+      children: <ShippingInfo customer={customer} dispatchCustomer={dispatchCustomer}/>
     },
     {
       title:"Confirm and Place Order",

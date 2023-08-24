@@ -23,11 +23,13 @@ const ProductProvider = (props: ProductProviderProps): JSX.Element => {
     const [products, setProducts]= React.useState<Map<string,IProduct>>(new Map());
 
     const addProduct = (obj: IProduct)=> {
+        console.log("added product", obj)
         if(!products.has(obj.id)){
             products.set(obj.id, obj);
         }
     }
     const removeProduct = (obj: IProduct)=> {
+        console.log("removed product", obj)
         if(products.has(obj.id)){
             products.delete(obj.id);
         }

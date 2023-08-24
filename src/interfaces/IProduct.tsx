@@ -4,5 +4,4 @@ export interface IProduct {
     price: number;
     discount: number;
     thumbnail: string;
-    selected: boolean;
 }

@@ -5,10 +5,10 @@ import { IProduct } from '../../interfaces/IProduct';
 import { GET_PRODUCTS } from '../../utils/ApiUrls';
 import { GET, SELECTED_FIELDS } from '../../utils/Constants';
 import { CustomButton, CustomCard, Loading } from '../common';
-import { useProductContext } from '../../contexts/ProductProvider';
 interface IProps{
   addProduct: (product:IProduct)=> void;
   removeProduct: (product:IProduct)=> void;
+  isItemSelected: (id:string)=>boolean;
 }
 export default function Products (props: IProps): JSX.Element {
     const limit = 6;
@@ -33,9 +33,8 @@ export default function Products (props: IProps): JSX.Element {
     const onProductSelect = (id:string)=>{
       const temp = [...products];
       temp.forEach((product:IProduct)=>{
-        if(product.id==id){
-          product.selected=!product.selected;
-          if(product.selected){
+        if(product.id===id){
+          if(!props.isItemSelected(product.id)){
             addProduct(product);
           }else{
             removeProduct(product);
@@ -43,7 +42,6 @@ export default function Products (props: IProps): JSX.Element {
         }
       
       })
-      console.log(temp)
       setProducts(temp);
     }
 
@@ -59,7 +57,7 @@ export default function Products (props: IProps): JSX.Element {
                 title={item.title}
                 image={item.thumbnail}
                 description={item.price.toFixed(2).toString()}
-                onSelect={onProductSelect} selected={item.selected}/>
+                onSelect={onProductSelect} selected={props.isItemSelected(item.id)}/>
                 </Grid>
             )
         })}
