@@ -7,6 +7,7 @@ interface ShippingInfoProviderProps{
 interface IShippingInfoContext {
     customer:ICustomer;
     dispatchCustomer:(action:IAction)=>void;
+    isValidCustomer : ()=> boolean;
 }
 const defaultCustomer={name:"",address:{doorNo:"",street:"",locality:"",district:"",state:"",pinCode:""},contactNo:""}
 
@@ -14,6 +15,10 @@ const ShippingInfoContext = React.createContext<IShippingInfoContext>({
     customer: defaultCustomer,
     dispatchCustomer: (action:IAction) =>{
         console.log("set customer");
+    },
+    isValidCustomer: () =>{
+        console.log("validate customer");
+        return false;
     }
 
 })
@@ -36,12 +41,18 @@ const reducer: Reducer<ICustomer,IAction>= (state:ICustomer, action:IAction): IC
 }
 const ShippingInfoProvider = (props: ShippingInfoProviderProps): JSX.Element => {
     const [customer, dispatchCustomer]= useReducer(reducer,defaultCustomer);
-
+    const isValidCustomer= () =>{
+        if(customer.name.length>0 && customer.contactNo.length>0 && customer.address.pinCode.length>0){
+            return true;
+        }
+        return false;
+    }
   return (
     <ShippingInfoContext.Provider
     value={{
         customer,
-        dispatchCustomer
+        dispatchCustomer,
+        isValidCustomer
     }}
     >
       {props.children}

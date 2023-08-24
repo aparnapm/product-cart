@@ -4,7 +4,8 @@ import {  Box, Grid } from '@mui/material';
 import { IProduct } from '../../interfaces/IProduct';
 import { GET_PRODUCTS } from '../../utils/ApiUrls';
 import { GET, SELECTED_FIELDS } from '../../utils/Constants';
-import { CustomButton, CustomCard, Loading } from '../common';
+import {  CustomCard, Loading } from '../common';
+import {  ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 interface IProps{
   addProduct: (product:IProduct)=> void;
   removeProduct: (product:IProduct)=> void;
@@ -63,17 +64,13 @@ export default function Products (props: IProps): JSX.Element {
         })}
        </Grid>
       <br/><br/>
-      <Grid container >
-        <Grid item lg={4} xs={4}>
-      {skip>0?<CustomButton text={"Previous"} onClick={()=>setSkip(skip-limit)}/>:null}
-      </Grid>
-      <Grid item lg={4} xs={4}>
-      <div>Page: {(skip/limit)+1} of {Math.ceil(total/limit)} </div>
-      </Grid>
-      <Grid item lg={4} xs={4}>
-      {skip<total-limit?<CustomButton text={"Next"} onClick={()=>setSkip(skip+limit)}/>:<div/>}
-      </Grid>
-      </Grid>
+      <div style={{display:"flex", justifyContent:"center"}} >
+      {skip>0?
+      <ArrowBackIos onClick={()=>setSkip(skip-limit)}/>:null}
+      <h4 style={{margin:0 , paddingLeft:"10px", paddingRight:"10px"}}>Page: {(skip/limit)+1} / {Math.ceil(total/limit)} </h4>
+      {skip<total-limit?
+        <ArrowForwardIos onClick={()=>setSkip(skip+limit)}/>:null}
+      </div>
       </div>:<Loading/>}
     </Box>
   );

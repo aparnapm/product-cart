@@ -9,7 +9,7 @@ interface Props {
 
 export default function CustomButton (props: Props) : JSX.Element{
   return (
-    <Button onClick={props.onClick} disabled={props.disabled?props.disabled:false}>
+    <Button  variant="contained" style={{opacity:props.disabled?0.4:1}} onClick={props.onClick} >
       {props.text}
     </Button>
   );
