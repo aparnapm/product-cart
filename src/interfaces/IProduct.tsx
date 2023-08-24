@@ -2,6 +2,6 @@ export interface IProduct {
     id: string;
     title: string;
     price: number;
-    discount: number;
+    discountPercentage: number;
     thumbnail: string;
 }

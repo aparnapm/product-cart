@@ -57,7 +57,7 @@ export default function Products (props: IProps): JSX.Element {
                 <CustomCard id={item.id}
                 title={item.title}
                 image={item.thumbnail}
-                description={item.price.toFixed(2).toString()}
+                description={"$"+(item.price-item.discountPercentage).toFixed(2).toString()}
                 onSelect={onProductSelect} selected={props.isItemSelected(item.id)}/>
                 </Grid>
             )

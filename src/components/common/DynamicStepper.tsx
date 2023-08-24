@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 interface IProps{
   steps: IStep[];
   completedResponse?: string;
+
 }
 export default function DynamicStepper(props:IProps) : JSX.Element{
   const [activeStep, setActiveStep] = React.useState(0);
@@ -45,11 +46,11 @@ export default function DynamicStepper(props:IProps) : JSX.Element{
       </Stepper>
       {activeStep === props.steps.length ? (
         <div>
-        <div style={{height:"80vh"}}>
-          {props.completedResponse}
+        <div style={{height:"70vh", display:"flex", justifyContent:"center"}}>
+         <h1> {props.completedResponse}</h1>
         </div>
           <div style={{width: "100%",display:"flex",justifyContent:"space-between"}}>
-            <div></div>
+           <div/>
             <CustomButton
               onClick={handleReset}
               text={"Order Again"}
@@ -58,7 +59,7 @@ export default function DynamicStepper(props:IProps) : JSX.Element{
           </div>
       ) : (
         <div>
-        <div style={{height:"80vh"}}>
+        <div style={{height:"70vh"}}>
         {props.steps[activeStep].children}
         </div>
           <div style={{width: "100%",display:"flex",justifyContent:"space-between"}}>

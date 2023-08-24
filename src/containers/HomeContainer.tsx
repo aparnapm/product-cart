@@ -1,4 +1,5 @@
 
+import Cart from '../components/cart';
 import { DynamicStepper } from '../components/common';
 import Products from '../components/products';
 import ShippingInfo from '../components/shippingInfo';
@@ -6,7 +7,7 @@ import { useProductContext } from '../contexts/ProductProvider';
 import { useShippingInfoContext } from '../contexts/ShippingInfoProvider';
 
 export default function HomeContainer () {
-  const {products,addProduct, removeProduct} = useProductContext();
+  const {products,addProduct, removeProduct,totalDiscount,totalPrice} = useProductContext();
   const {customer, dispatchCustomer, isValidCustomer}= useShippingInfoContext();
   const steps=[ {
     title:"Product Catalogue",
@@ -20,7 +21,7 @@ export default function HomeContainer () {
   },
   {
     title:"Confirm and Place Order",
-    children: <div>Please confirm and place order</div>
+    children: <Cart products={products} totalPrice={totalPrice} totalDiscount={totalDiscount} customer={customer}/>
   }]
 
 
@@ -32,9 +33,10 @@ export default function HomeContainer () {
     return false;
   }
   return (
-    <div style={{paddingLeft:"20px", paddingRight:"20px"}}>
+    <div style={{paddingLeft:"20px", paddingRight:"20px", paddingBottom:"20px"}}>
       <DynamicStepper
         steps={steps}
+        completedResponse='Thank you for shopping with us us!'
       />
      </div>
   );
