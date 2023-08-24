@@ -10,16 +10,21 @@ import { toast } from "react-toastify";
 interface IProps {
   steps: IStep[];
   completedResponse?: string;
+  onComplete: ()=>void;
 }
 export default function DynamicStepper(props: IProps): JSX.Element {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
+    if(activeStep==props.steps.length-1){
+      props.onComplete();
+    }
     if (props.steps[activeStep].nextDisabled) {
       toast.error(props.steps[activeStep].error);
     } else {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
+    
   };
 
   const handleBack = () => {
