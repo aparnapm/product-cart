@@ -4,11 +4,12 @@ import * as React from 'react';
 interface Props {
     text: string;
     onClick : ()=> void;
+    disabled?: boolean;
 }
 
-export function CustomButton (props: Props) {
+export default function CustomButton (props: Props) : JSX.Element{
   return (
-    <Button onClick={props.onClick}>
+    <Button onClick={props.onClick} disabled={props.disabled?props.disabled:false}>
       {props.text}
     </Button>
   );

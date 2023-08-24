@@ -23,10 +23,14 @@ const ProductProvider = (props: ProductProviderProps): JSX.Element => {
     const [products, setProducts]= React.useState<Map<string,IProduct>>(new Map());
 
     const addProduct = (obj: IProduct)=> {
-
+        if(!products.has(obj.id)){
+            products.set(obj.id, obj);
+        }
     }
     const removeProduct = (obj: IProduct)=> {
-
+        if(products.has(obj.id)){
+            products.delete(obj.id);
+        }
     }
   return (
     <ProductContext.Provider
@@ -40,3 +44,7 @@ const ProductProvider = (props: ProductProviderProps): JSX.Element => {
     </ProductContext.Provider>
   );
 }
+
+const useProductContext = (): IProductContext => React.useContext(ProductContext);
+export{ProductProvider, useProductContext};
+
