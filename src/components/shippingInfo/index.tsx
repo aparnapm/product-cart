@@ -60,6 +60,7 @@ export default function ShippingInfo(props: IProps) {
         onClick={props.dispatchCustomer}
         value={props.customer.address.pinCode}
         required={true}
+        number={true}
         width={"50vw"}
       />
       <InputField
@@ -69,6 +70,7 @@ export default function ShippingInfo(props: IProps) {
         onClick={props.dispatchCustomer}
         value={props.customer.contactNo}
         width={"50vw"}
+        number={true}
       />
     </Container>
   );

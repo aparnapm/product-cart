@@ -1,6 +1,7 @@
 import React, { Reducer, useReducer } from "react";
 import { ICustomer } from "../interfaces/ICustomer";
 import { CUSTOMER_CONTACTNO, CUSTOMER_DISTRICT, CUSTOMER_DOORNO, CUSTOMER_NAME, CUSTOMER_PINCODE, CUSTOMER_STATE, CUSTOMER_STREET } from "../utils/Constants";
+import { validNumber } from "../utils/Utils";
 
 interface ShippingInfoProviderProps {
   children: React.ReactNode;
@@ -68,8 +69,8 @@ const ShippingInfoProvider = (
   const isValidCustomer = () => {
     if (
       customer.name.length > 0 &&
-      customer.contactNo.length > 0 &&
-      customer.address.pinCode.length > 0
+      validNumber(customer.contactNo) &&
+      validNumber(customer.address.pinCode)
     ) {
       return true;
     }

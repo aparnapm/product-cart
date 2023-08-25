@@ -1,6 +1,6 @@
 export const GET = "get";
 export const SELECTED_FIELDS = "id,thumbnail,title,price,discountPercentage";
-export const FINAL_NOTE= "Thank you for shopping with us us!";
+export const FINAL_NOTE= "Thank you for shopping with us!";
 export const ORDER_SUCCESS= "Order placed successfully!";
 export const ORDER_FAILED="Error placing order, try again!";
 export const SELECT_PRODUCT="Select Products";

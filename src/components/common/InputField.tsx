@@ -1,6 +1,7 @@
 import { FormControl, FormHelperText, TextField } from "@mui/material";
 import { IAction } from "../../contexts/ShippingInfoProvider";
 import { useState } from "react";
+import { validNumber } from "../../utils/Utils";
 
 interface Props {
   label: string;
@@ -10,12 +11,13 @@ interface Props {
   value: string;
   width: string;
   required?: boolean;
+  number?: boolean;
 }
 
 export default function InputField(props: Props): JSX.Element {
   const [error, setError] = useState<boolean>(false);
   const onInput = (value: string) => {
-    if (value.trim() === "") {
+    if (value.trim() === ""|| props.number && !validNumber(value)) {
       setError(true);
     } else {
       setError(false);
@@ -37,7 +39,7 @@ export default function InputField(props: Props): JSX.Element {
         error={true}
         style={{ visibility: error && props.required ? "visible" : "hidden" }}
       >
-        This is a mandatory field
+        Enter a valid value for this field!
       </FormHelperText>
     </FormControl>
   );
